@@ -11,7 +11,7 @@ import lejos.pc.comm.*;
 
 import java.io.*;
 
-public class PCsejway extends JFrame implements ActionListener
+public class PClysSensor extends JFrame implements ActionListener
 {
 	
 	
@@ -22,8 +22,6 @@ public class PCsejway extends JFrame implements ActionListener
 	   private TextField ki = new TextField(10);
 	   private TextField kd = new TextField(10);
 	   
-	   private TextField EMA = new TextField(10);
-	   private TextField Offset = new TextField(10);
 
 	   private String name = "TrumpBot"; 
 	   private String address = "0016530A1C88";
@@ -37,13 +35,12 @@ public class PCsejway extends JFrame implements ActionListener
 	   
 	   private JButton connectButton = new JButton("Connect");   
 	   private JButton goButton = new JButton("Go");
-	private Object p4;
 
 
 	   /**
 	    * Constructor builds GUI
 	    */
-	   public PCsejway() 
+	   public PClysSensor() 
 	   {		
 	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      setTitle("Control NXT");
@@ -81,12 +78,7 @@ public class PCsejway extends JFrame implements ActionListener
 	      p3.add(new JLabel("kd:"));
 	      p3.add(kd);
 	      kd.setText("33");
-	      p3.add(new JLabel("EMA:"));
-	      p3.add(EMA);
-	      EMA.setText("0.0000005");
-	      p3.add(new JLabel("Offset"));
-	      p3.add(Offset);
-	      Offset.setText("606");
+	     
 	      
 	      // holds go button
 	      JPanel p4 = new JPanel();
@@ -151,16 +143,6 @@ public class PCsejway extends JFrame implements ActionListener
 	            dos.writeInt(kd);
 	            dos.flush();
 	            
-	            String EMAString = EMA.getText();
-		    	double EMA = new Double(EMAString).doubleValue();        
-		        dos.writeDouble(EMA);
-		        dos.flush();	
-		        
-		        String OffsetString = Offset.getText();
-		    	double Offset = new Double(OffsetString).doubleValue();        
-		        dos.writeDouble(Offset);
-		        dos.flush();	
-	            
 	            String freqString = "1234";
 	    	    int freq = new Integer(freqString).intValue();        
 	            dos.writeInt(freq);
@@ -179,7 +161,7 @@ public class PCsejway extends JFrame implements ActionListener
 	    */		
 	   public static void main(String[] args)
 	   {
-	      PCsejway frame = new PCsejway();
+	      PClysSensor frame = new PClysSensor();
 	      frame.setVisible(true);
 	   }
 	}
